@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="menu.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <script defer src="https://use.fontawesome.com/releases/v6.0.0-beta1/js/all.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans&family=Murecho:wght@100&family=Roboto&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <nav>
+        <a href="/" class="go-back"><i class=" fa-solid fa-arrow-left"></i></a>
+        <p class="nav-title" style="margin-top: -5px;">TODO-List</p>
+    </nav>
+  </header>
+
+<div class="title-section">
+  <h1 class="page-title">Listas de Tarefas</h1>
+  <a href="/checklists/new" class="button"><button class="new-list-button">Nova Lista</button></a>
+</div>
+<main>
+  
+  <section>
+    <% checklists.forEach(checklist => { %>
+      <div class="card-me">
+          <div class="container-mee">
+              <h2 class="card-title-me"><b><%= checklist.name %></b></h2> 
+              <p class="tasks"><%= checklist.tasks.length %> Tarefas</p> 
+          </div>
+
+          <div class="card-footer-me">
+              <ul>
+                  <li class="edit-view-remove"><a href="/checklists/<%= checklist.id %>?_method=delete" class="remove">Remover</a></li>
+                  <li class="edit-view-remove"><a href="/checklists/<%= checklist._id %>" class="view">Ver</a></li>
+                  <li class="edit-view-remove"><a href="/checklists/<%= checklist._id %>/edit" class="edit">Editar</a></li>
+              </ul>
+          </div>
+      </div>
+      <% }) %>
+  </section>
+</main>
+</body>
+</html>
+
+

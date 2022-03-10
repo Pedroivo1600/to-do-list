@@ -1,0 +1,11 @@
+<form method="post" action="<%= url %>">
+  <label for="">Nome</label>
+  <input class="input" type="text" name="checklist[name]" placeholder="Lista de Tarefas" value="<%= checklist.name %>">
+  <% if(checklist.error) { %>
+  <p class="error" style="margin-top: 5px; margin-bottom: 10px; color: red;"><%= checklist.error.message %></p>
+  <% } %>
+  <button class="submitButton" type="submit">Salvar</button>
+</form>
+    
+    
+

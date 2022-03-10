@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/reset.css">
+    <link rel="stylesheet" href="/stylesheets/menu.css">
+    <link rel="stylesheet" href="/stylesheets/show.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <script defer src="https://use.fontawesome.com/releases/v6.0.0-beta1/js/all.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans&family=Murecho:wght@100&family=Roboto&display=swap" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body>
+  <header>
+      <nav>
+          <a href="/checklists" class="go-back"><i class=" fa-solid fa-arrow-left"></i></a>
+          <p class="nav-title" style="margin-top: -5px;">TODO-List</p>
+      </nav>
+  </header>
+  <main>
+      <section class="title-section">
+          <h1 class="checklistName"><%= checklist.name %></h1>
+          <a href="/checklists/<%= checklist._id %>/tasks/new" class="new-task"><button class="newTaskButton">Nova Tarefa</button></a>
+      </section>
+      
+      <section class="tasks-section">
+        <% checklist.tasks.forEach(task => { %>
+          <div class="task">
+              <input type="checkbox" name="" id="">
+              <p class="taskText"><%= (task.name) %></p>
+              <a href="/tasks/<%= task._id %>?_method=delete" class="remove"><button class="removeButton">Remover</button></a>
+          </div>
+        <% }) %>
+      </section>
+  </main>
+</body>
+</html>
+
