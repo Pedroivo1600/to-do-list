@@ -1,0 +1,81 @@
+main{
+    margin-top: 20px;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+}
+
+.title-section{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: relative;
+    margin: 25px 40px 40px 40px;
+    padding-bottom: 30px;
+    border-bottom: .1rem solid #f5f5f5;
+}
+
+.checklistName{
+    font-size: 30px;
+    position: relative;
+    font-family: 'Roboto', sans-serif;
+}
+
+.new-task{
+    position: absolute;
+    right: 0;
+    margin-right: 40px;
+}
+
+.newTaskButton{
+    width: 100px;
+    height: 35px;
+    background-color: #48c78e;
+    border-color: transparent;
+    color: #fff;
+    border-radius: 3px;
+}
+
+.tasks-section{
+    display: flex;
+    flex-direction: column;
+    margin-left: 40px;
+    margin-right: 100px;
+}
+
+.task{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: relative;
+    margin-bottom: 40px;
+
+}
+
+.removeButton{
+    height: 25px;
+    width: 70px;
+    border-color: transparent;
+    color: #fff;
+    border-radius: 3px;
+    background-color: #f14668;
+}
+
+.remove{
+    position: absolute;
+    right: 0;
+}
+
+input[type="checkbox"]{
+    margin-right: 5px;
+}
+
+@media screen and (max-width: 360px){
+    .title-section{
+        margin-right: 0px;
+    }
+
+    .tasks-section{
+        margin-right: 50px;
+    }  
+}

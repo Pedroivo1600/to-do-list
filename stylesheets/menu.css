@@ -1,0 +1,26 @@
+nav{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background-color: black;
+    height: 40px;
+    position: relative;
+    justify-content: center;
+}
+
+.nav-title{
+    color: white;
+    font-size: 15.8px;
+    /* font-family: 'DM Sans', sans-serif; */
+    font-family: 'Murecho', sans-serif;
+
+    letter-spacing: .05rem;
+}
+
+.go-back{
+    position: absolute;
+    margin-left: 15px;
+    left: 0;
+    font-size: 20px;
+    color: #fff;
+}

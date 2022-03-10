@@ -1,0 +1,57 @@
+body, html{
+    overflow: hidden;
+}
+
+
+main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #485fc7;
+    margin-top: -30px;
+}
+
+section{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
+
+.title{
+    font-size: 50px;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 10px;
+}
+.subtitle{
+    font-size: 30px;
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+a{
+    align-self: center;
+}
+
+
+.button{
+    background-color: #f5f5f5;
+    text-align: center;
+    width: 282px;
+    height: 50px;
+    align-self: center;
+    border-color: transparent;
+    border-radius: 3px;
+    font-size: 20px;
+    color: #363636;
+}
+
+
+
+@media screen and (max-width: 361px){
+    .subtitle{
+        font-size: 22px;
+    }
+}
