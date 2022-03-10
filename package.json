@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Pedroivo1600/to-do-list/issues"
   },
-  "homepage": "https://github.com/Pedroivo1600/to-do-list#readme"
+  "homepage": "https://github.com/Pedroivo1600/to-do-list#readme",
+  "dependencies": {
+    "express": "^4.17.3"
+  }
 }
