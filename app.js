@@ -141,6 +141,48 @@ app.delete('/checklists/:id', async (req, res) => {
 
 })
 
+app.get('/checklists/:id/tasks/new', async (req, res) => {
+    try {
+        let task = new Task();
+        res.status(200).render('tasks/new', {checklistId: req.params.id, task: task})
+    } catch (error) {
+        res.status(422).render('pages/error', {error: 'Erro ao exibir form de nova tarefa!'})
+    }
+})
+
+app.post('/checklists/:id/tasks', async (req, res) => {
+    let { name } = req.body.task;
+    let task = new Task({ name, checklist: req.params.id })
+
+    try {
+        await task.save();
+        let checklist = await Checklist.findById(req.params.id);
+        checklist.tasks.push(task);
+        await checklist.save();
+        res.redirect(`/checklists/${req.params.id}`)
+    } catch (error) {
+        console.log(error)
+        res.status(422).render('pages/error', {error: `${error} ---- Erro ao adicionar task!`})
+    }
+
+})
+
+app.delete('/tasks/:id', async(req, res) => {
+    
+    try {
+        let task = await Task.findByIdAndDelete(req.params.id);
+        console.log(task)
+        let checklist = await Checklist.findById(task.checklist);
+        let taskToRemove = checklist.tasks.indexOf(task._id);
+        checklist.tasks.slice(taskToRemove, 1);
+        checklist.save()
+        res.redirect(`/checklists/${checklist._id}`)
+    } catch (error) {
+        res.status(422).render('pages/error', {error: `${error} ---- Não foi possível remover a task!`})
+    }
+
+})
+
 
 
 
