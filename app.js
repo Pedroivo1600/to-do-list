@@ -12,6 +12,8 @@ require('./config/database');
 
 const Checklist = require('./models/checklist');
 const Task = require('./models/task');
+const checklist = require("./models/checklist");
+const { reset } = require("nodemon");
 
 
 
@@ -98,9 +100,48 @@ app.put('/checklists/:id', async (req, res) => {
         await checklist.update({name});
         res.redirect('/checklists');
     } catch (error) {
-        console.log(error)
+        console.log(error);
     }
+
 })
+
+app.get('/checklists/:id/edit', async (req, res) => {
+    
+    try {
+        let checklist = await Checklist.findById(req.params.id);
+        res.status(200).render('checklists/edit', { checklist: checklist })
+    } catch (error) {
+        res.status(422).render('pages/error', {error: 'Erro ao exibir a edição de tarefas'})
+    }
+
+})
+
+app.put('/checklists/:id', async (req, res) => {
+    
+    let {name} = req.body.checklist;
+    let checklist = await Checklist.findById(req.params.id);
+
+    try {
+        await checklist.update(name);
+        res.redirect('/checklists')
+    } catch (error) {
+        res.status(422).render('pages/error', {error: 'Erro ao atualizar título!'})
+    }
+
+})
+
+app.delete('/checklists/:id', async (req, res) => {
+
+    try {
+        await Checklist.findByIdAndRemove(req.params.id);
+        res.redirect('/checklists');
+    } catch (error) {
+        res.status(422).render('pages/error', {error: error})
+    }
+
+})
+
+
 
 
 
