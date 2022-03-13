@@ -19,7 +19,7 @@ const Task = require('./models/task');
 
 const app = express();
 app.use(express.json());
-app.use(express.urlencoded({extended: false}));
+app.use(express.urlencoded({extended: true})) //middleware para método post de formulário
 app.use(methodOverride('_method', { methods: ['POST', 'GET'] }));
 
 app.use(express.static(path.join(__dirname, 'stylesheets'))); //allows us to use static pages(our css pages)
@@ -48,6 +48,59 @@ app.get('/checklists', async (req, res) => {
         res.status(500).render('pages/error', {error: 'Error trying to exibit checklists'})
     }
 }) //checklists route ("localhost:4444/checklists")
+
+app.get('/checklists/new', async (req, res) => {
+    try{
+        let checklist = new Checklist();
+        res.status(200).render('checklists/new', { checklist: checklist });
+    } catch (error) {
+        res.status(500).render('pages/error', {error: 'Erro ao carregar o formulário'})
+    }
+})
+
+app.post('/checklists', async (req, res) => {
+    let { name } = req.body.checklist;
+
+    let checklist = new Checklist({ name });
+
+    try {
+        await checklist.save();
+        res.redirect('/checklists');
+    } catch (error) {
+        res.status(422).render('pages/error', {error: error});
+    }
+
+})
+
+app.get('/checklists/:id', async (req, res) => {
+    try {
+        let checklist = await Checklist.findById(req.params.id).populate('tasks');
+        res.status(200).render('checklists/show', {checklist: checklist})
+    } catch (error) {
+        res.status(500).render('pages/error', {error: 'Erro ao exibir tarefas!'})
+    }
+})
+
+app.get('/checklists/:id/edit', async (req, res) => {
+    try {
+        let checklist = await Checklist.findById(req.params.id).populate('tasks') //incluindo as tasks já associadas com a funcao populate
+        res.status(200).render('checklists/edit', {checklist: checklist})
+    } catch (error) {
+        res.status(422).render('pages/error', {error: 'Falha ao exibir form de edição do título'})
+    }
+})
+
+app.put('/checklists/:id', async (req, res) => {
+    let {name} = req.body.checklist;
+    let checklist = await Checklist.findById(req.params.id);
+
+    try {
+        await checklist.update({name});
+        res.redirect('/checklists');
+    } catch (error) {
+        console.log(error)
+    }
+})
 
 
 
